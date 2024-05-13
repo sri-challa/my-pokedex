@@ -1,7 +1,12 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import { Image } from "@chakra-ui/react";
+
+import RandomPokemonListItem from "../../Components/RandomPokemonList/RandomPokemonList";
 
 export default function HomePage() {
+  const randomNumbers = Array.from({ length: 12 }, () =>
+    Math.floor(Math.random() * 899)
+  );
+
   return (
     <div>
       <span>Search for Pokemon by name or its pokedex number</span>
@@ -12,27 +17,15 @@ export default function HomePage() {
           "repeat(3, 1fr)",
           "repeat(6, 1fr)",
         ]}
-        gap={6}
+        gap={4}
       >
-        <GridItem bg="green.100">
-          <span>Pokemon here</span>
-          <Image
-            boxSize="150px"
-            src="https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/001.png"
-            alt="Dan Abramov"
-          />
-        </GridItem>
-        <GridItem w="100%" h="10" bg="red.100" />
-        <GridItem w="100%" h="10" bg="blue.500" />
-        <GridItem w="100%" h="10" bg="blue.500" />
-        <GridItem w="100%" h="10" bg="blue.500" />
-        <GridItem w="100%" h="10" bg="blue.500" />
-        <GridItem w="100%" h="10" bg="red.100" />
-        <GridItem w="100%" h="10" bg="blue.500" />
-        <GridItem w="100%" h="10" bg="blue.500" />
-        <GridItem w="100%" h="10" bg="blue.500" />
-        <GridItem w="100%" h="10" bg="blue.500" />
-        <GridItem w="100%" h="10" bg="blue.500" />
+        {randomNumbers.map((id, index) => (
+          <button key={index}>
+            <GridItem>
+              <RandomPokemonListItem id={id} />
+            </GridItem>
+          </button>
+        ))}
       </Grid>
     </div>
   );
