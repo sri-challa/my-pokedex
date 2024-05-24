@@ -1,6 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 
-import RandomPokemonListItem from "../../Components/RandomPokemonList/RandomPokemonList";
+import RandomPokemonListItem from "../../Components/HomePage/RandomPokemonList/RandomPokemonList";
 
 export default function HomePage() {
   const randomNumbers = Array.from({ length: 12 }, () =>
