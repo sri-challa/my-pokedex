@@ -1,11 +1,12 @@
-import { Badge, Box, Image, VStack, Text, HStack } from "@chakra-ui/react";
+import { Box, Image, VStack, Text } from "@chakra-ui/react";
 import { NameContainer } from "./InfoCard.styles";
+import PokemonTypes from "../../atoms/PokemonTypes/PokemonTypes";
 
 interface InfoCardProps {
   imageUrl: string;
   types: string[];
   name: string;
-  pokedexId: string;
+  pokedexId: number;
 }
 export default function InfoCard({
   imageUrl,
@@ -30,7 +31,7 @@ export default function InfoCard({
   );
 }
 
-function PokemonName({ pokedexId, name }: { pokedexId: string; name: string }) {
+function PokemonName({ pokedexId, name }: { pokedexId: number; name: string }) {
   return (
     <NameContainer>
       <Text fontSize="md">#{pokedexId}</Text>
@@ -38,23 +39,5 @@ function PokemonName({ pokedexId, name }: { pokedexId: string; name: string }) {
         {name}
       </Text>
     </NameContainer>
-  );
-}
-
-function PokemonTypes({ types }: { types: string[] }) {
-  return (
-    <HStack>
-      {types.map((type, index) => (
-        <Badge
-          variant="solid"
-          colorScheme={type}
-          textAlign="center"
-          padding="0.15rem 1rem"
-          key={index}
-        >
-          {type}
-        </Badge>
-      ))}
-    </HStack>
   );
 }

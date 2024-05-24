@@ -250,4 +250,8 @@ const colors = {
   },
 };
 
-export const theme = extendTheme({ colors });
+const fonts = {
+  body: "Poetsen One, sans-serif",
+};
+
+export const theme = extendTheme({ colors, fonts });

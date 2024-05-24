@@ -1,6 +1,6 @@
-import InfoCard from "../InforCard/InfoCard";
-import { usePokemon } from "../../Services/api/useFetchPokemon";
-import { calculateIdForImage } from "../../utils/calculateIdForImage";
+import InfoCard from "../InfoCard/InfoCard";
+import { usePokemon } from "../../../Services/api/useFetchPokemon";
+import { calculateImageUrl } from "../../../utils/calculateImageUrl";
 
 interface RandomPokemonListItem {
   id: number;
@@ -13,9 +13,7 @@ export default function RandomPokemonListItem({ id }: RandomPokemonListItem) {
       {isLoading && <span>Loading...</span>}
       {data && (
         <InfoCard
-          imageUrl={`https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${calculateIdForImage(
-            id
-          )}.png`}
+          imageUrl={calculateImageUrl(id)}
           types={data.types}
           name={data.name}
           pokedexId={data.id}
