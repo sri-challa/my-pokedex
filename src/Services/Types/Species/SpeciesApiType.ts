@@ -14,3 +14,11 @@ export type SpeciesApiEggGroup = {
   name: string;
   url: string;
 };
+
+export type SpeciesApiGenera = {
+  genus: string;
+  language: {
+    name: string;
+    url: string;
+  };
+};

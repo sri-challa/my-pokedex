@@ -18,15 +18,11 @@ export default function NameAndImage() {
         <Text fontSize="lg">#{id}</Text>
         <Text fontSize={["4xl", "5xl", "6xl"]}>{Capitalize(name)}</Text>
       </NameContainer>
-
       <Box bg={`${types[0]}.100`} borderRadius="16px">
         <Image
-          boxSize={"75%"}
           src={calculateImageUrl(id)}
           alt={name}
           padding="1rem"
-          display="block"
-          margin="auto"
           animation={animation}
         />
       </Box>

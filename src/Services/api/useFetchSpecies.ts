@@ -1,6 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Species } from "../Types/Species/SpeciesType";
 import { SpeciesApiEggGroup } from "../Types/Species/SpeciesApiType";
+import {
+  formatDataForCategory,
+  formatDataForDescription,
+} from "../../utils/formtApiData";
 
 const speciesDoesNotExist = "Species does not exist";
 
@@ -11,18 +15,19 @@ const fetchSpecies = async (id: string) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("in hook", data);
+    console.log("in species hook", data);
     const speciesData: Species = {
-      description: data.flavor_text_entries[0].flavor_text,
-      color: data.color.name,
+      description: formatDataForDescription(data.flavor_text_entries) ?? "-",
+      color: data.color.name ?? "-",
+      category: formatDataForCategory(data.genera),
       eggGroups: data.egg_groups.map((item: SpeciesApiEggGroup) => item.name),
-      shape: data.shape.name,
+      shape: data.shape?.name ?? "-",
       isLegendary: data.is_legendary,
       isMythical: data.is_mythical,
       hatchCounter: data.hatch_counter,
       growthRate: data.growth_rate.name,
-      habitat: data.habitat.name,
-      generation: data.generation.name,
+      habitat: data.habitat?.name || "none",
+      generation: data.generation?.name || "none",
       genderRate: data.gender_rate,
       evolutionChain: data.evolution_chain.url,
     };

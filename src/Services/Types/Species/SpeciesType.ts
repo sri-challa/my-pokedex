@@ -1,6 +1,7 @@
 export type Species = {
   description: string;
   color: string;
+  category: string;
   eggGroups: string[];
   shape: string;
   isLegendary: boolean;
