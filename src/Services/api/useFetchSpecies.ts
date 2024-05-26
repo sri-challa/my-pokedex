@@ -8,10 +8,11 @@ import {
 
 const speciesDoesNotExist = "Species does not exist";
 
-const fetchSpecies = async (id: string) => {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon-species/${id}`
-  );
+const fetchSpecies = async (url: string | undefined) => {
+  if (!url) {
+    return undefined;
+  }
+  const response = await fetch(url);
 
   if (response.ok) {
     const data = await response.json();
@@ -39,10 +40,11 @@ const fetchSpecies = async (id: string) => {
   }
 };
 
-export const useSpecies = (id: string) => {
+export const useSpecies = (url: string | undefined, enabled: boolean) => {
   return useQuery({
-    queryKey: ["getSpecies", { id }],
-    queryFn: () => fetchSpecies(id),
+    queryKey: ["getSpecies", { url }],
+    queryFn: () => fetchSpecies(url),
     retry: (_count, { message }) => message !== speciesDoesNotExist,
+    enabled,
   });
 };
