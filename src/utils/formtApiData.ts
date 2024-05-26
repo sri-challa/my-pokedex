@@ -50,7 +50,6 @@ export function formatDataForAbilityDescription(
   const englishDescription = effectEntries.filter(
     (item) => item.language.name === "en"
   );
-  console.log("hi", englishDescription);
   return englishDescription[0].short_effect;
 }
 
