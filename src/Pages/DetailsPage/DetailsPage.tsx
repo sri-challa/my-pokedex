@@ -21,6 +21,7 @@ function RenderDetailsPage() {
     isSpeciesLoading,
     isSpeciesError,
   } = useDetails();
+
   return (
     <>
       {(isPokemonLoading || isSpeciesLoading) && <span>Loading</span>}

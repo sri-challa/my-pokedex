@@ -254,4 +254,30 @@ const fonts = {
   body: "Poetsen One, sans-serif",
 };
 
-export const theme = extendTheme({ colors, fonts });
+const textStyles = {
+  heading: {
+    fontFamily: "Reddit Mono",
+    fontWeight: 800,
+    fontSize: "18px",
+  },
+  subHeading: {
+    fontFamily: "Reddit Mono",
+    fontWeight: 700,
+    fontSize: "16px",
+  },
+  content: {
+    fontFamily: "Reddit Mono",
+    fontWeight: 500,
+    fontSize: "14px",
+  },
+};
+
+const components = {
+  Button: {
+    baseStyle: {
+      fontFamily: "Reddit Mono",
+    },
+  },
+};
+
+export const theme = extendTheme({ colors, fonts, textStyles, components });

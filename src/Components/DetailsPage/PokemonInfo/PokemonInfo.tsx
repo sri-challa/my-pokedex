@@ -9,8 +9,12 @@ import {
 import About from "../About/About";
 import Multipliers from "../Multipliers/Multipliers";
 import Breeding from "../Breeding/Breeding";
+import { useDetails } from "../../../Pages/DetailsPage/state/useDetails";
 
 export default function PokemonInfo() {
+  const { pokemonData } = useDetails();
+  const { types } = pokemonData!;
+
   return (
     <>
       <Tabs position="relative" variant="unstyled">
@@ -19,7 +23,7 @@ export default function PokemonInfo() {
           <Tab>Breeding</Tab>
           <Tab>Multipliers</Tab>
         </TabList>
-        <TabIndicator mt="-1.5px" height="2px" bg="poison.500" />
+        <TabIndicator mt="-1.5px" height="2px" bg={`${types[0]}.500`} />
         <TabPanels>
           <TabPanel>
             <About />

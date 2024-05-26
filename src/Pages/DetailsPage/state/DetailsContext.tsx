@@ -25,11 +25,14 @@ export function DetailsProvider({ children }: { children: React.ReactNode }) {
     isError: isPokemonError,
   } = usePokemon(id!);
 
+  const speciesUrl = pokemonData?.species.url;
+
+  // species is fetched after pokemon data is fetched as the url is contained in the response.
   const {
     data: speciesData,
     isLoading: isSpeciesLoading,
     isError: isSpeciesError,
-  } = useSpecies(id!);
+  } = useSpecies(speciesUrl, !!pokemonData);
 
   return (
     <DetailsContext.Provider
