@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 
 export interface InfoTileProps {
   heading: string;
-  body: string;
+  body: string | React.ReactNode;
 }
 export default function InfoTile({ heading, body }: InfoTileProps) {
   return (
@@ -18,7 +18,11 @@ export default function InfoTile({ heading, body }: InfoTileProps) {
       }}
     >
       <Text textStyle="subHeading">{heading}</Text>
-      <Text textStyle="content">{body}</Text>
+      {typeof body === "string" ? (
+        <Text textStyle="content">{body}</Text>
+      ) : (
+        body
+      )}
     </Box>
   );
 }

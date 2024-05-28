@@ -1,21 +1,22 @@
-import { Badge, HStack } from "@chakra-ui/react";
+import { Badge, HStack, Text } from "@chakra-ui/react";
+import { PokemonType } from "../../../Services/Types/Pokemon/PokemonType";
 
 interface PokemonTypesProps {
-  types: string[];
+  types: PokemonType[];
 }
 
 export default function PokemonTypes({ types }: PokemonTypesProps) {
   return (
-    <HStack>
-      {types.map((type, index) => (
+    <HStack flexWrap={"wrap"}>
+      {types.map(({ name }, index) => (
         <Badge
           variant="solid"
-          colorScheme={type}
+          colorScheme={name}
           textAlign="center"
           padding="0.15rem 1rem"
           key={index}
         >
-          {type}
+          <Text textStyle="content">{name}</Text>
         </Badge>
       ))}
     </HStack>
