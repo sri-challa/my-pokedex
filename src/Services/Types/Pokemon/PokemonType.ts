@@ -15,12 +15,17 @@ export type PokemonSpecies = {
   url: string;
 };
 
+export type PokemonType = {
+  name: string;
+  url: string;
+};
+
 export type Pokemon = {
   name: string;
   id: number;
   height: number;
   weight: number;
-  types: string[];
+  types: PokemonType[];
   abilities: Ability[];
   stats: Stat[];
   species: PokemonSpecies;

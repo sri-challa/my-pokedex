@@ -1,10 +1,11 @@
 import { Box, Image, VStack, Text } from "@chakra-ui/react";
 import { NameContainer } from "./InfoCard.styles";
 import PokemonTypes from "../../atoms/PokemonTypes/PokemonTypes";
+import { PokemonType } from "../../../Services/Types/Pokemon/PokemonType";
 
 interface InfoCardProps {
   imageUrl: string;
-  types: string[];
+  types: PokemonType[];
   name: string;
   pokedexId: number;
 }
@@ -18,7 +19,7 @@ export default function InfoCard({
     <VStack spacing={2}>
       <PokemonName pokedexId={pokedexId} name={name} />
       <Box
-        bg={`${types[0]}.100`}
+        bg={`${types[0].name}.100`}
         borderRadius="8px"
         display="flex"
         justifyContent="center"

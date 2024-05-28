@@ -5,6 +5,7 @@ import {
 import {
   PokemonApiAbility,
   PokemonApiStat,
+  PokemonApiTypes,
 } from "../Services/Types/Pokemon/PokemonAPIType";
 import {
   SpeciesApiFlavourText,
@@ -16,6 +17,13 @@ export function formatDataForDescription(flavorTexts: SpeciesApiFlavourText[]) {
     (item: SpeciesApiFlavourText) => item.language.name === "en"
   );
   return englishFlavorText[0].flavor_text;
+}
+
+export function formatDataForType(types: PokemonApiTypes[]) {
+  return types.map((item: PokemonApiTypes) => ({
+    name: item.type.name,
+    url: item.type.url,
+  }));
 }
 
 export function formatDataForAbilities(abilities: PokemonApiAbility[]) {

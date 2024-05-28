@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { PokemonApiTypes } from "../Types/Pokemon/PokemonAPIType";
 import { Pokemon } from "../Types/Pokemon/PokemonType";
 import {
   formatDataForAbilities,
   formatDataForStats,
+  formatDataForType,
 } from "../../utils/formtApiData";
 
 const pokemonDoesNotExist = "Pokemon does not exist";
@@ -13,13 +13,13 @@ const fetchPokemon = async (nameOrId: string) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("in pokemon hook", data);
+
     const pokemonData: Pokemon = {
       name: data.name,
       id: data.id,
       height: data.height,
       weight: data.weight,
-      types: data.types.map((item: PokemonApiTypes) => item.type.name),
+      types: formatDataForType(data.types),
       abilities: formatDataForAbilities(data.abilities),
       stats: formatDataForStats(data.stats),
       species: data.species,

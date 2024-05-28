@@ -23,7 +23,7 @@ export default function PokemonInfo() {
           <Tab>Breeding</Tab>
           <Tab>Multipliers</Tab>
         </TabList>
-        <TabIndicator mt="-1.5px" height="2px" bg={`${types[0]}.500`} />
+        <TabIndicator mt="-1.5px" height="2px" bg={`${types[0].name}.500`} />
         <TabPanels>
           <TabPanel>
             <About />
