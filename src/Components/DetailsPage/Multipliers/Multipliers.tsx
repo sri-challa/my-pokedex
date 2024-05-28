@@ -35,7 +35,7 @@ export default function Multipliers() {
             </FormLabel>
             <Switch
               size="md"
-              colorScheme={`${calculateColorFromType(types).name}`}
+              colorScheme={`${calculateColorFromType(types)}`}
             />
           </FormControl>
 

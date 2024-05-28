@@ -13,7 +13,7 @@ const fetchPokemon = async (nameOrId: string) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("in pokemon hook", data);
+
     const pokemonData: Pokemon = {
       name: data.name,
       id: data.id,

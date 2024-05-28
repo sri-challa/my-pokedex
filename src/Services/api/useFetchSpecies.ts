@@ -16,7 +16,7 @@ const fetchSpecies = async (url: string | undefined) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("in species hook", data);
+
     const speciesData: Species = {
       description: formatDataForDescription(data.flavor_text_entries) ?? "-",
       color: data.color.name ?? "-",

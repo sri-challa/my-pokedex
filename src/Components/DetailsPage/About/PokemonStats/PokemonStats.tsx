@@ -20,7 +20,7 @@ export default function PokemonStats() {
           <StyledContainer>
             <Text
               textStyle="subHeading"
-              color={`${calculateColorFromType(types).name}.500`}
+              color={`${calculateColorFromType(types)}.500`}
             >
               {Capitalize(stat.name)}
             </Text>

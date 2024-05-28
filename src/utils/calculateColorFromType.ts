@@ -5,5 +5,5 @@ export function calculateColorFromType(types: PokemonType[]) {
   if (length > 1) {
     return types[length - 1];
   }
-  return types[0];
+  return types[0].name;
 }

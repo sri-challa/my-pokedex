@@ -17,7 +17,7 @@ const fetchPokemon = async (url: string) => {
       generation: data.generation.name,
       pokemons: formatDataForPokemonNameFromAbility(data.pokemon),
     };
-    console.log("in ability hook", data);
+
     return formattedData;
   } else {
     if (response.status === 404) {
