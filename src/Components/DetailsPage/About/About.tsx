@@ -1,5 +1,4 @@
 import { useDetails } from "../../../Pages/DetailsPage/state/useDetails";
-import PokemonTypes from "../../atoms/PokemonTypes/PokemonTypes";
 import HeadingAndDescription, {
   HeadingAndDescriptionProps,
 } from "../../atoms/HeadingAndDescription/HeadingAndDescription";
@@ -7,6 +6,8 @@ import { Box } from "@chakra-ui/react";
 import DetailsTiles from "./DetailsTiles/DetailsTiles";
 import Stats from "./PokemonStats/PokemonStats";
 import PokemonAbilitites from "./PokemonAbilities/PokemonAbilities";
+import PokemonTypesList from "../../atoms/PokemonTypesList/PokemonTypesList";
+import { makeTypesClickable } from "../../../utils/makeTypesClickable";
 
 export default function About() {
   const { pokemonData, speciesData } = useDetails();
@@ -20,7 +21,7 @@ export default function About() {
     },
     {
       heading: "Type",
-      content: <PokemonTypes types={types} />,
+      content: <PokemonTypesList types={makeTypesClickable(types)} />,
     },
     {
       heading: "Details",

@@ -4,8 +4,9 @@ import {
   calculateAttackMultipliers,
   calculateDefenceMultipliers,
 } from "../../../../utils/calculateMultipliers";
-import PokemonTypes from "../../../atoms/PokemonTypes/PokemonTypes";
 import { Grid, GridItem, Text } from "@chakra-ui/react";
+import PokemonTypesList from "../../../atoms/PokemonTypesList/PokemonTypesList";
+import { makeTypesClickable } from "../../../../utils/makeTypesClickable";
 
 interface MultipliersContentProps {
   data: Type[];
@@ -50,7 +51,9 @@ export default function MultipliersContent({
           </GridItem>
           <GridItem>
             {content.damageTypes.length >= 1 ? (
-              <PokemonTypes types={content.damageTypes} />
+              <PokemonTypesList
+                types={makeTypesClickable(content.damageTypes)}
+              />
             ) : (
               <Text textStyle="content">None</Text>
             )}

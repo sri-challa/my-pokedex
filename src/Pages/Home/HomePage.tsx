@@ -1,6 +1,7 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 
 import RandomPokemonListItem from "../../Components/HomePage/RandomPokemonList/RandomPokemonList";
+import PokemonsList from "../../Components/PokemonsList/PokemonsList";
 
 export default function HomePage() {
   const randomNumbers = Array.from({ length: 12 }, () =>
@@ -27,6 +28,11 @@ export default function HomePage() {
           </button>
         ))}
       </Grid>
+      <PokemonsList
+        pokemonsToDisplay={Array.from({ length: 100 }, (_, index) =>
+          (index + 1).toString()
+        )}
+      />
     </div>
   );
 }
