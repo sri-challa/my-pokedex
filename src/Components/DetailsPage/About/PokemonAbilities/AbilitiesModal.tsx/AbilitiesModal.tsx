@@ -1,22 +1,10 @@
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalBody,
-  Text,
-  UnorderedList,
-  ListItem,
-  Divider,
-  IconButton,
-  Box,
-} from "@chakra-ui/react";
+import { Text, UnorderedList, ListItem, Box } from "@chakra-ui/react";
 import { useFetchAbility } from "../../../../../Services/api/useFetchAbilility";
 import { calculateGeneration } from "../../../../../utils/calculateGeneration";
 import { Capitalize } from "../../../../../utils/capitalize";
 import { Ability } from "../../../../../Services/Types/Ability/AbilityType";
-import ModalHeader from "../../../../atoms/ModalHeader/ModalHeader";
-import { IconX } from "@tabler/icons-react";
 import PokemonsList from "../../../../PokemonsList/PokemonsList";
+import CustomModal from "../../../../atoms/CustomModal/CustomModal";
 
 interface AbilitiesModalProps {
   isOpen: boolean;
@@ -33,31 +21,17 @@ export default function AbilitiesModal({
   const { data, isLoading } = useFetchAbility(url);
 
   return (
-    <>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
-        <ModalContent sx={{ backgroundColor: "gray.300", maxWidth: "1200px" }}>
-          <ModalHeader
-            middleContent={
-              <Text fontSize={["2xl"]}>{Capitalize(heading)}</Text>
-            }
-            rightContent={
-              <IconButton
-                backgroundColor="transparent"
-                icon={<IconX />}
-                aria-label={`Close ${heading} details`}
-                onClick={onClose}
-              />
-            }
-          />
-          <Divider borderColor="black" />
-          <ModalBody>
-            {isLoading && <p>Loading</p>}
-            {data && <AbilitiesModalBody data={data} />}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
+    <CustomModal
+      isOpen={isOpen}
+      onClose={onClose}
+      heading={Capitalize(heading)}
+      body={
+        <>
+          {isLoading && <p>Loading</p>}
+          {data && <AbilitiesModalBody data={data} />}
+        </>
+      }
+    />
   );
 }
 
