@@ -8,4 +8,8 @@ export type Type = {
   noDamageFrom: PokemonType[];
   noDamageTo: PokemonType[];
   name: string;
+  typeId: number;
+  generation: string;
+  moveDamageClass: string;
+  pokemon: string[];
 };

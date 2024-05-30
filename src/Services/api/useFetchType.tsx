@@ -1,6 +1,7 @@
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { Type } from "../Types/PokemonType/Type";
 import { PokemonType } from "../Types/Pokemon/PokemonType";
+import { TypeApiPokemon } from "../Types/PokemonType/TypeAPI";
 
 const typeDoesNotExist = "Type does not exist";
 
@@ -9,6 +10,7 @@ export const fetchType = async (url: string) => {
 
   if (response.ok) {
     const data = await response.json();
+    console.log("in hook", data);
     const formattedData: Type = {
       doubleDamageFrom: data.damage_relations.double_damage_from,
       doubleDamageTo: data.damage_relations.double_damage_to,
@@ -17,6 +19,12 @@ export const fetchType = async (url: string) => {
       noDamageFrom: data.damage_relations.no_damage_from,
       noDamageTo: data.damage_relations.no_damage_to,
       name: data.name,
+      typeId: data.id,
+      generation: data.generation.name ?? "None",
+      moveDamageClass: data.move_damage_class
+        ? data.move_damage_class.name
+        : "None",
+      pokemon: data.pokemon.map((item: TypeApiPokemon) => item.pokemon.name),
     };
 
     return formattedData;
