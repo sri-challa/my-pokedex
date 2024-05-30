@@ -1,4 +1,4 @@
-import { Type } from "../Services/Types/PokemonType/Type";
+import { Type } from "../../Services/Types/PokemonType/Type";
 
 type MultiplierType = {
   value: number;

@@ -13,11 +13,13 @@ import {
 import { useFetchType } from "../../../../Services/api/useFetchType";
 import { Type } from "../../../../Services/Types/PokemonType/Type";
 import { Capitalize } from "../../../../utils/capitalize";
-import InfoTile, { InfoTileProps } from "../../InfoTile/InfoTile";
-import { calculateGeneration } from "../../../../utils/calculateGeneration";
-import React from "react";
-import PokemonTypes from "../PokemonTypesList";
+import InfoTile from "../../InfoTile/InfoTile";
 import ModalHeader from "../../ModalHeader/ModalHeader";
+import MultipliersList from "../../MultipliersList/MultipliersList";
+import {
+  contentsForInfoTileOnTypeModal,
+  contentsForMultipliersOnTypeModal,
+} from "../../../../utils/typeModalHelpers";
 
 interface TypeModalProps {
   isOpen: boolean;
@@ -61,47 +63,8 @@ export default function TypeModal({
 }
 
 function TypeModalBody({ data }: { data: Type }) {
-  const tilesInfo: InfoTileProps[] = [
-    {
-      heading: "Introduced",
-      body: calculateGeneration(data.generation),
-    },
-    {
-      heading: "Type Id",
-      body: data.typeId.toString(),
-    },
-    {
-      heading: "Move Damage Class",
-      body: Capitalize(data.moveDamageClass),
-    },
-  ];
-
-  const contents = [
-    {
-      damage: "Double Damage From",
-      damageTypes: data.doubleDamageFrom,
-    },
-    {
-      damage: "Double Damage To",
-      damageTypes: data.doubleDamageTo,
-    },
-    {
-      damage: "Half Damage From",
-      damageTypes: data.halfDamageFrom,
-    },
-    {
-      damage: "Half Damage To",
-      damageTypes: data.halfDamageTo,
-    },
-    {
-      damage: "No Damage From",
-      damageTypes: data.noDamageFrom,
-    },
-    {
-      damage: "No Damage To",
-      damageTypes: data.noDamageTo,
-    },
-  ];
+  const tilesInfo = contentsForInfoTileOnTypeModal(data);
+  const contents = contentsForMultipliersOnTypeModal(data);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
@@ -117,18 +80,12 @@ function TypeModalBody({ data }: { data: Type }) {
       </Grid>
       <Grid templateColumns={["repeat(1, 1fr)", "0.5fr 1fr"]} gap={"0.5rem"}>
         {contents.map((content) => (
-          <React.Fragment key={content.damage}>
-            <GridItem>
-              <Text textStyle="subHeading">{content.damage}</Text>
-            </GridItem>
-            <GridItem>
-              {content.damageTypes.length >= 1 ? (
-                <PokemonTypes types={content.damageTypes} />
-              ) : (
-                <Text textStyle="content">None</Text>
-              )}
-            </GridItem>
-          </React.Fragment>
+          <MultipliersList
+            title={content.damage}
+            types={content.damageTypes}
+            isTypeClickabe={false}
+            key={content.damage}
+          />
         ))}
       </Grid>
     </Box>

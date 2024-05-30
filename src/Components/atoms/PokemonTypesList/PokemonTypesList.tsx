@@ -2,6 +2,7 @@ import { Badge, HStack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { PokemonType } from "../../../Services/Types/Pokemon/PokemonType";
 import TypeModal from "./TypeModal/TypeModal";
+import React from "react";
 
 type PokemonTypesListItem = PokemonType & {
   isClickable?: boolean;
@@ -14,21 +15,20 @@ export default function PokemonTypesList({ types }: PokemonTypesListProps) {
   return (
     <HStack flexWrap={"wrap"}>
       {types.map(({ name, url, isClickable }) => (
-        <>
+        <React.Fragment key={name}>
           {isClickable ? (
-            <ClickableType name={name} url={url} key={name} />
+            <ClickableType name={name} url={url} />
           ) : (
             <Badge
               variant="solid"
               colorScheme={name}
               textAlign="center"
               padding="0.15rem 1rem"
-              key={name}
             >
               <Text textStyle="content">{name}</Text>
             </Badge>
           )}
-        </>
+        </React.Fragment>
       ))}
     </HStack>
   );
