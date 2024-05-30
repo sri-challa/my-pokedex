@@ -1,28 +1,15 @@
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  Divider,
-  ModalBody,
-  useToken,
-  Grid,
-  GridItem,
-  Text,
-  Box,
-  IconButton,
-} from "@chakra-ui/react";
+import { useToken, Grid, GridItem, Text, Box } from "@chakra-ui/react";
 import { useFetchType } from "../../../../Services/api/useFetchType";
 import { Type } from "../../../../Services/Types/PokemonType/Type";
 import { Capitalize } from "../../../../utils/capitalize";
 import InfoTile from "../../InfoTile/InfoTile";
-import ModalHeader from "../../ModalHeader/ModalHeader";
 import MultipliersList from "../../MultipliersList/MultipliersList";
 import {
   contentsForInfoTileOnTypeModal,
   contentsForMultipliersOnTypeModal,
 } from "../../../../utils/typeModalHelpers";
 import PokemonsList from "../../../PokemonsList/PokemonsList";
-import { IconX } from "@tabler/icons-react";
+import CustomModal from "../../CustomModal/CustomModal";
 
 interface TypeModalProps {
   isOpen: boolean;
@@ -41,29 +28,18 @@ export default function TypeModal({
   const [background] = useToken("colors", [`${heading}.200`]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
-      <ModalOverlay />
-      <ModalContent
-        sx={{ backgroundColor: `${background}`, maxWidth: "900px" }}
-      >
-        <ModalHeader
-          middleContent={<Text fontSize={["2xl"]}>{Capitalize(heading)}</Text>}
-          rightContent={
-            <IconButton
-              backgroundColor="transparent"
-              icon={<IconX />}
-              aria-label={`Close ${heading} details`}
-            />
-          }
-        />
-
-        <Divider borderColor="black" />
-        <ModalBody>
+    <CustomModal
+      isOpen={isOpen}
+      onClose={onClose}
+      heading={Capitalize(heading)}
+      backgroundColor={background}
+      body={
+        <>
           {isLoading && <span>Loading</span>}
           {data && <TypeModalBody data={data} />}
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+        </>
+      }
+    />
   );
 }
 
@@ -96,7 +72,7 @@ function TypeModalBody({ data }: { data: Type }) {
       <Text textStyle="subHeading" textAlign="center">
         Pokemon
       </Text>
-      <PokemonsList pokemonsToDisplay={data.pokemon} pokemonsPerPage={3} />
+      <PokemonsList pokemonsToDisplay={data.pokemon} pokemonsPerPage={4} />
     </Box>
   );
 }

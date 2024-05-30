@@ -39,11 +39,11 @@ export default function PokemonsList({
         display: "flex",
         flexDirection: "column",
         gap: "1rem",
-        minHeight: "400px",
+        minHeight: "300px",
       }}
     >
       <Grid
-        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"]}
         gap={4}
       >
         {currentList.map((name, index) => (
@@ -71,7 +71,9 @@ export default function PokemonsList({
         </Text>
         <IconButton
           variant="customIconOnly"
-          disabled={currentList.includes(currentList[currentList.length - 1])}
+          isDisabled={currentList.includes(
+            pokemonsToDisplay[pokemonsToDisplay.length - 1]
+          )}
           onClick={() => {
             pageNumber;
             setPageNumber(pageNumber + 1);
