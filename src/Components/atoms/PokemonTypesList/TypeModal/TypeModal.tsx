@@ -44,7 +44,7 @@ export default function TypeModal({
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
       <ModalContent
-        sx={{ backgroundColor: `${background}`, maxWidth: "900px" }}
+        sx={{ backgroundColor: `${background}`, maxWidth: "1200px" }}
       >
         <ModalHeader
           middleContent={<Text fontSize={["2xl"]}>{Capitalize(heading)}</Text>}
@@ -53,10 +53,10 @@ export default function TypeModal({
               backgroundColor="transparent"
               icon={<IconX />}
               aria-label={`Close ${heading} details`}
+              onClick={onClose}
             />
           }
         />
-
         <Divider borderColor="black" />
         <ModalBody>
           {isLoading && <span>Loading</span>}
@@ -96,7 +96,7 @@ function TypeModalBody({ data }: { data: Type }) {
       <Text textStyle="subHeading" textAlign="center">
         Pokemon
       </Text>
-      <PokemonsList pokemonsToDisplay={data.pokemon} pokemonsPerPage={3} />
+      <PokemonsList pokemonsToDisplay={data.pokemon} pokemonsPerPage={4} />
     </Box>
   );
 }
