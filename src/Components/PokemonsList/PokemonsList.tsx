@@ -1,4 +1,11 @@
-import { Box, Button, Grid, GridItem, HStack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  GridItem,
+  HStack,
+  IconButton,
+  Text,
+} from "@chakra-ui/react";
 
 import IndividualPokemon from "./IndividualPokemon/IndividualPokemon";
 import { useEffect, useState } from "react";
@@ -6,68 +13,73 @@ import {
   calculateCurrentPageText,
   calculatePokemonsForPage,
 } from "../../utils/pageNavigationHelpers";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
 interface PokemonsListProps {
   pokemonsToDisplay: string[];
+  pokemonsPerPage?: number;
 }
 
-export default function PokemonsList({ pokemonsToDisplay }: PokemonsListProps) {
-  const [pageSize, setPageSize] = useState<number>(1);
+export default function PokemonsList({
+  pokemonsToDisplay,
+  pokemonsPerPage,
+}: PokemonsListProps) {
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const [currentList, setCurrentList] = useState([] as string[]);
 
   useEffect(() => {
-    setCurrentList(calculatePokemonsForPage(pageSize, pokemonsToDisplay));
-  }, [pageSize, pokemonsToDisplay]);
+    setCurrentList(
+      calculatePokemonsForPage(pageNumber, pokemonsToDisplay, pokemonsPerPage)
+    );
+  }, [pageNumber, pokemonsPerPage, pokemonsToDisplay]);
 
   return (
-    // <Box border={"5px solid black"} padding={"2rem"}>
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        minHeight: "400px",
+      }}
+    >
       <Grid
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={4}
       >
         {currentList.map((name, index) => (
-          <button key={index}>
-            <GridItem>
-              <Box
-                sx={{
-                  padding: "1rem",
-                  width: "100%",
-                  border: "solid 1px gray",
-                  borderRadius: "16px",
-                  "&: hover": {
-                    boxShadow: `0 4px 8px -4px black`,
-                  },
-                }}
-              >
-                <IndividualPokemon name={name} />
-              </Box>
-            </GridItem>
-          </button>
+          <GridItem key={index}>
+            <IndividualPokemon name={name} />
+          </GridItem>
         ))}
       </Grid>
       <HStack sx={{ justifyContent: "flex-end", gap: "1rem" }}>
-        <Button
-          isDisabled={pageSize === 1}
+        <IconButton
+          variant="customIconOnly"
+          isDisabled={pageNumber === 1}
           onClick={() => {
-            setPageSize(pageSize - 1);
+            setPageNumber(pageNumber - 1);
           }}
-        >
-          Previous Page
-        </Button>
+          aria-label="Go back to previous page"
+          icon={<IconChevronLeft />}
+        />
         <Text textStyle="content">
-          {calculateCurrentPageText(pageSize, pokemonsToDisplay.length)}
+          {calculateCurrentPageText(
+            pageNumber,
+            pokemonsToDisplay.length,
+            pokemonsPerPage
+          )}
         </Text>
-        <Button
+        <IconButton
+          variant="customIconOnly"
           disabled={currentList.includes(currentList[currentList.length - 1])}
           onClick={() => {
-            setPageSize(pageSize + 1);
+            pageNumber;
+            setPageNumber(pageNumber + 1);
           }}
-        >
-          Next Page
-        </Button>
+          aria-label="Go to next page"
+          icon={<IconChevronRight />}
+        />
       </HStack>
-    </>
-    // </Box>
+    </Box>
   );
 }

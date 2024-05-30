@@ -9,6 +9,7 @@ import {
   GridItem,
   Text,
   Box,
+  IconButton,
 } from "@chakra-ui/react";
 import { useFetchType } from "../../../../Services/api/useFetchType";
 import { Type } from "../../../../Services/Types/PokemonType/Type";
@@ -20,6 +21,8 @@ import {
   contentsForInfoTileOnTypeModal,
   contentsForMultipliersOnTypeModal,
 } from "../../../../utils/typeModalHelpers";
+import PokemonsList from "../../../PokemonsList/PokemonsList";
+import { IconX } from "@tabler/icons-react";
 
 interface TypeModalProps {
   isOpen: boolean;
@@ -43,18 +46,20 @@ export default function TypeModal({
       <ModalContent
         sx={{ backgroundColor: `${background}`, maxWidth: "900px" }}
       >
-        {/* <ModalHeader>
-          <Text fontSize={["4xl"]}>{Capitalize(heading)}</Text>
-        </ModalHeader>
-        <ModalCloseButton /> */}
         <ModalHeader
           middleContent={<Text fontSize={["2xl"]}>{Capitalize(heading)}</Text>}
-          rightContent={<span>Hi</span>}
+          rightContent={
+            <IconButton
+              backgroundColor="transparent"
+              icon={<IconX />}
+              aria-label={`Close ${heading} details`}
+            />
+          }
         />
 
         <Divider borderColor="black" />
         <ModalBody>
-          {isLoading && <p>Loading</p>}
+          {isLoading && <span>Loading</span>}
           {data && <TypeModalBody data={data} />}
         </ModalBody>
       </ModalContent>
@@ -67,7 +72,7 @@ function TypeModalBody({ data }: { data: Type }) {
   const contents = contentsForMultipliersOnTypeModal(data);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
       <Grid
         templateColumns={[null, "repeat(1, 1fr)", "repeat(3, 1fr)"]}
         gap={"1rem"}
@@ -88,6 +93,10 @@ function TypeModalBody({ data }: { data: Type }) {
           />
         ))}
       </Grid>
+      <Text textStyle="subHeading" textAlign="center">
+        Pokemon
+      </Text>
+      <PokemonsList pokemonsToDisplay={data.pokemon} pokemonsPerPage={3} />
     </Box>
   );
 }

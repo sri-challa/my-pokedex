@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import { buttonTheme } from "./Components/CustomButton";
 
 const colors = {
   normal: {
@@ -273,11 +274,7 @@ const textStyles = {
 };
 
 const components = {
-  Button: {
-    baseStyle: {
-      fontFamily: "Reddit Mono",
-    },
-  },
+  Button: buttonTheme,
 };
 
 export const theme = extendTheme({ colors, fonts, textStyles, components });

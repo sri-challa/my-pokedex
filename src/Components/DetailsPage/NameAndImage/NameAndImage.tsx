@@ -2,7 +2,7 @@ import { Text } from "@chakra-ui/react";
 import { Capitalize } from "../../../utils/capitalize";
 import { useDetails } from "../../../Pages/DetailsPage/state/useDetails";
 import { NameContainer } from "./NameAndImage.styles";
-import AnimatedImageWithBorder from "../../atoms/AnimatedImageWithBorder/AnimatedImageWithBorder";
+import AnimatedPokemonImageWithBackground from "../../atoms/AnimatedPokemonImageWithBackground/AnimatedPokemonImageWithBackground";
 
 export default function NameAndImage() {
   const { pokemonData } = useDetails();
@@ -13,7 +13,7 @@ export default function NameAndImage() {
         <Text fontSize="lg">#{id}</Text>
         <Text fontSize={["4xl", "5xl", "6xl"]}>{Capitalize(name)}</Text>
       </NameContainer>
-      <AnimatedImageWithBorder
+      <AnimatedPokemonImageWithBackground
         id={id}
         name={name}
         backgroundColor={`${types[0].name}.100`}

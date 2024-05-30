@@ -1,17 +1,14 @@
-import { Grid, GridItem } from "@chakra-ui/react";
-
-import RandomPokemonListItem from "../../Components/HomePage/RandomPokemonList/RandomPokemonList";
 import PokemonsList from "../../Components/PokemonsList/PokemonsList";
 
 export default function HomePage() {
-  const randomNumbers = Array.from({ length: 12 }, () =>
-    Math.floor(Math.random() * 899)
-  );
+  // const randomNumbers = Array.from({ length: 12 }, () =>
+  //   Math.floor(Math.random() * 899)
+  // );
 
   return (
     <div>
       <span>Search for Pokemon by name or its pokedex number</span>
-      <Grid
+      {/* <Grid
         templateColumns={[
           "repeat(1, 1fr)",
           "repeat(2, 1fr)",
@@ -27,7 +24,7 @@ export default function HomePage() {
             </GridItem>
           </button>
         ))}
-      </Grid>
+      </Grid> */}
       <PokemonsList
         pokemonsToDisplay={Array.from({ length: 100 }, (_, index) =>
           (index + 1).toString()

@@ -1,29 +1,39 @@
-const PokemonsPerPage = 6;
-
 export function calculatePokemonsForPage(
-  pageSize: number,
-  currentList: string[]
+  pageNumber: number,
+  currentList: string[],
+  pokemonsPerPage = 6
 ) {
   let startIndex = 0;
-  let endIndex = PokemonsPerPage;
-  // We only show 6 pokemons at once one the screen.
+  let endIndex = pokemonsPerPage;
+  // We only show a fixed no of pokemons at once one the screen.
   // Therefore only fetch those pokemon.
-  if (pageSize > 1) {
-    startIndex = (pageSize - 1) * PokemonsPerPage;
-    endIndex = pageSize * PokemonsPerPage;
+  if (pageNumber > 1) {
+    startIndex = (pageNumber - 1) * pokemonsPerPage;
+    endIndex = pageNumber * pokemonsPerPage;
   }
   return currentList.slice(startIndex, endIndex);
 }
 
-export function calculateStartAndEndIndex(pageSize: number) {
+export function calculateStartAndEndIndex(
+  pageNumber: number,
+  pokemonsPerPage = 6
+) {
   return {
-    startIndex: (pageSize - 1) * PokemonsPerPage,
-    endIndex: pageSize * PokemonsPerPage,
+    startIndex: (pageNumber - 1) * pokemonsPerPage,
+    endIndex: pageNumber * pokemonsPerPage,
   };
 }
 
-export function calculateCurrentPageText(pageSize: number, maxLength: number) {
-  const startIndex = calculateStartAndEndIndex(pageSize).startIndex + 1;
-  const endIndex = calculateStartAndEndIndex(pageSize).endIndex;
-  return `Showing ${startIndex} - ${endIndex} of ${maxLength}`;
+export function calculateCurrentPageText(
+  pageSize: number,
+  maxLength: number,
+  pokemonsPerPage = 6
+) {
+  const startIndex =
+    calculateStartAndEndIndex(pageSize, pokemonsPerPage).startIndex + 1;
+  const endIndex = calculateStartAndEndIndex(
+    pageSize,
+    pokemonsPerPage
+  ).endIndex;
+  return `${startIndex} - ${endIndex} of ${maxLength}`;
 }
