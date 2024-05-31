@@ -1,8 +1,9 @@
 import { Badge, HStack, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PokemonType } from "../../../Services/Types/Pokemon/PokemonType";
 import TypeModal from "./TypeModal/TypeModal";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 type PokemonTypesListItem = PokemonType & {
   isClickable?: boolean;
@@ -36,6 +37,13 @@ export default function PokemonTypesList({ types }: PokemonTypesListProps) {
 
 function ClickableType({ name, url }: { name: string; url: string }) {
   const [openModal, setOpenModal] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    // close the modal when the url changes. Indicates we navigated to a new page.
+    setOpenModal(false);
+  }, [location.pathname]);
+
   return (
     <>
       <Badge
