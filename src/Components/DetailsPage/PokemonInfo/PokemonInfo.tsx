@@ -17,7 +17,7 @@ export default function PokemonInfo() {
 
   return (
     <>
-      <Tabs position="relative" variant="unstyled">
+      <Tabs position="relative" variant="unstyled" isLazy>
         <TabList>
           <Tab>About</Tab>
           <Tab>Breeding</Tab>
