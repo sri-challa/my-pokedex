@@ -8,11 +8,13 @@ import Stats from "./PokemonStats/PokemonStats";
 import PokemonAbilitites from "./PokemonAbilities/PokemonAbilities";
 import PokemonTypesList from "../../atoms/PokemonTypesList/PokemonTypesList";
 import { makeTypesClickable } from "../../../utils/makeTypesClickable";
+import LengendaryTag from "../../atoms/LegendaryTag/LegendaryTag";
+import MysticalTag from "../../atoms/MysticalTag/MysticalTag";
 
 export default function About() {
   const { pokemonData, speciesData } = useDetails();
   const { types } = pokemonData!;
-  const { description } = speciesData!;
+  const { description, isLegendary, isMythical } = speciesData!;
 
   const contents: HeadingAndDescriptionProps[] = [
     {
@@ -38,20 +40,24 @@ export default function About() {
   ];
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-      }}
-    >
-      {contents.map((item) => (
-        <HeadingAndDescription
-          key={item.heading}
-          heading={item.heading}
-          content={item.content}
-        />
-      ))}
-    </Box>
+    <>
+      {isLegendary && <LengendaryTag />}
+      {isMythical && <MysticalTag />}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+        }}
+      >
+        {contents.map((item) => (
+          <HeadingAndDescription
+            key={item.heading}
+            heading={item.heading}
+            content={item.content}
+          />
+        ))}
+      </Box>
+    </>
   );
 }

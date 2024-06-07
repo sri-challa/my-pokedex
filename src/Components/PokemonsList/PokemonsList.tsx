@@ -27,6 +27,7 @@ export default function PokemonsList({
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [currentList, setCurrentList] = useState([] as string[]);
 
+  // We might not need this.
   useEffect(() => {
     setCurrentList(
       calculatePokemonsForPage(pageNumber, pokemonsToDisplay, pokemonsPerPage)
