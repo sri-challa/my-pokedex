@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import { buttonTheme } from "./Components/CustomButton";
+import { switchTheme } from "./Components/CustomSwitch";
 
 const colors = {
   normal: {
@@ -275,6 +276,7 @@ const textStyles = {
 
 const components = {
   Button: buttonTheme,
+  Switch: switchTheme,
 };
 
 export const theme = extendTheme({ colors, fonts, textStyles, components });
