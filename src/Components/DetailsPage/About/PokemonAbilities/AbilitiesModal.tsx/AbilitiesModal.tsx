@@ -5,6 +5,7 @@ import { Capitalize } from "../../../../../utils/capitalize";
 import { Ability } from "../../../../../Services/Types/Ability/AbilityType";
 import PokemonsList from "../../../../PokemonsList/PokemonsList";
 import CustomModal from "../../../../atoms/CustomModal/CustomModal";
+import ModalLoader from "../../../../atoms/ModalLoader/ModalLoader";
 
 interface AbilitiesModalProps {
   isOpen: boolean;
@@ -27,7 +28,7 @@ export default function AbilitiesModal({
       heading={Capitalize(heading)}
       body={
         <>
-          {isLoading && <p>Loading</p>}
+          {isLoading && <ModalLoader height="600px" />}
           {data && <AbilitiesModalBody data={data} />}
         </>
       }
