@@ -10,6 +10,7 @@ import {
 } from "../../../../utils/typeModalHelpers";
 import PokemonsList from "../../../PokemonsList/PokemonsList";
 import CustomModal from "../../CustomModal/CustomModal";
+import ModalLoader from "../../ModalLoader/ModalLoader";
 
 interface TypeModalProps {
   isOpen: boolean;
@@ -35,7 +36,7 @@ export default function TypeModal({
       backgroundColor={background}
       body={
         <>
-          {isLoading && <span>Loading</span>}
+          {isLoading && <ModalLoader height="800px" />}
           {data && <TypeModalBody data={data} />}
         </>
       }

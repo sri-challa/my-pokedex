@@ -8,6 +8,12 @@ import { theme } from "./theme/theme.ts";
 
 const queryClient = new QueryClient();
 
+queryClient.setDefaultOptions({
+  queries: {
+    staleTime: Infinity,
+  },
+});
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

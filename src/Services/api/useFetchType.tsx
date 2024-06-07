@@ -10,7 +10,7 @@ export const fetchType = async (url: string) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("in hook", data);
+
     const formattedData: Type = {
       doubleDamageFrom: data.damage_relations.double_damage_from,
       doubleDamageTo: data.damage_relations.double_damage_to,

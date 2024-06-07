@@ -2,9 +2,9 @@ import { useDetails } from "../../../Pages/DetailsPage/state/useDetails";
 import { useFetchMultipleTypes } from "../../../Services/api/useFetchType";
 import { Box, FormControl, FormLabel, Switch, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import { calculateColorFromType } from "../../../utils/calculateColorFromType";
 import MultipliersContent from "./MultipliersContent/MultipliersContent";
 import { Type } from "../../../Services/Types/PokemonType/Type";
+import { calculateColorFromType } from "../../../utils/calculateColorFromType";
 
 export default function Multipliers() {
   const { pokemonData } = useDetails();
