@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 
 import IndividualPokemon from "./IndividualPokemon/IndividualPokemon";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   calculateCurrentPageText,
   calculatePokemonsForPage,
@@ -25,14 +25,12 @@ export default function PokemonsList({
   pokemonsPerPage,
 }: PokemonsListProps) {
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [currentList, setCurrentList] = useState([] as string[]);
 
-  // We might not need this.
-  useEffect(() => {
-    setCurrentList(
-      calculatePokemonsForPage(pageNumber, pokemonsToDisplay, pokemonsPerPage)
-    );
-  }, [pageNumber, pokemonsPerPage, pokemonsToDisplay]);
+  const currentListTwo = calculatePokemonsForPage(
+    pageNumber,
+    pokemonsToDisplay,
+    pokemonsPerPage
+  );
 
   return (
     <Box
@@ -47,7 +45,7 @@ export default function PokemonsList({
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"]}
         gap={4}
       >
-        {currentList.map((name, index) => (
+        {currentListTwo.map((name, index) => (
           <GridItem key={index}>
             <IndividualPokemon name={name} />
           </GridItem>
@@ -72,7 +70,7 @@ export default function PokemonsList({
         </Text>
         <IconButton
           variant="customIconOnly"
-          isDisabled={currentList.includes(
+          isDisabled={currentListTwo.includes(
             pokemonsToDisplay[pokemonsToDisplay.length - 1]
           )}
           onClick={() => {
